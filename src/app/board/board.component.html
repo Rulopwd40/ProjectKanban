@@ -1,0 +1,33 @@
+<!--board.component.html-->
+
+<app-dev-board [formData]="formData" (openFormEvent)="listenFormEvent()" ></app-dev-board>
+
+@if(openForm){
+<ng-container class="modal" *ngIf="openForm">
+    <form class="overlay" (submit)="submitForm($event)">
+        <div class="name-input"> 
+            <input type="text" placeholder="Nombre" [(ngModel)]="formData.name" name="name"> 
+        </div>
+        <div class="surname-input"> 
+            <input type="text" placeholder="Apellido" [(ngModel)]="formData.surname" name="surname"> 
+        </div>
+        <div class="rol-input"> 
+            <input type="text" placeholder="Rol" [(ngModel)]="formData.rol" name="rol"> 
+        </div>
+        
+        <button type="submit">Añadir</button>
+    </form>
+</ng-container>
+}
+<ng-container *ngFor="let state of states">
+    <app-state [name]="state"></app-state>
+  </ng-container>
+    <app-add-button (addStateEvent)="listenAddButton()"></app-add-button>
+    @if (addButtonPushed) {
+        <input #newstate
+        (keyup.enter)="newState(newstate.value)"
+        (blur)="onInputBlur()">
+        <button (click)="newState(newstate.value)">Añadir</button>
+    }
+
+ 

@@ -1,0 +1,8 @@
+<!--dev-board.component.html-->
+<input type="search">
+<button (click)="FormEvent()">+</button>
+
+<section *ngFor="let card of cards">
+    <div><app-card name="{{card.name}}" surname="{{card.surname}}" rol="{{card.rol}}" id="{{card.id}}" ></app-card></div>
+</section>
+<app-card name="dia" surname="niggae" rol="CP Maker" id="129"></app-card>

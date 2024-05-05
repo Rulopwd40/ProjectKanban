@@ -1,0 +1,45 @@
+* {
+    display: inline-block;
+    height: 250px;
+    padding: 5px;
+}
+
+input {
+    background-color: white;
+    height: 20px;
+    width: 100px;
+}
+
+button {
+    background-color: lightgrey;
+    height: 30px;
+    width: 60px;
+}
+
+app-add-button {
+    background-color: lightgray;
+    position:absolute;
+    align-content: center;
+}
+
+app-dev-board {
+    
+    max-height: max-content;
+    background-color: rgb(156, 170, 196);
+    width:20%;
+}
+
+app-state {
+    position: relative;
+    
+    margin-right: 2px;
+    /* Espacio entre columnas */
+    margin-left: 2px;
+    /* Espacio entre columnas */
+    border-radius: 10px;
+    /* Bordes redondeados */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Sombra */
+    border: 1px solid #ccc;
+    /* Borde de la columna */
+}
