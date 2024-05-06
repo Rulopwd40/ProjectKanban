@@ -2,6 +2,7 @@
     display: inline-block;
     height: 250px;
     padding: 5px;
+    
 }
 
 input {
@@ -27,6 +28,7 @@ app-dev-board {
     max-height: max-content;
     background-color: rgb(156, 170, 196);
     width:20%;
+   
 }
 
 app-state {
@@ -42,4 +44,10 @@ app-state {
     /* Sombra */
     border: 1px solid #ccc;
     /* Borde de la columna */
+    
+}
+
+.drag-card{
+    cursor:move;
+    z-index:300;
 }

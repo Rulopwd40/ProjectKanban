@@ -1,6 +1,6 @@
 <!--board.component.html-->
 
-<app-dev-board [formData]="formData" (openFormEvent)="listenFormEvent()" ></app-dev-board>
+<app-dev-board [formData]="formData" (openFormEvent)="listenFormEvent()" (cardClickedEvent)="handleCardClicked($event)"></app-dev-board>
 
 @if(openForm){
 <ng-container class="modal" *ngIf="openForm">
@@ -20,7 +20,7 @@
 </ng-container>
 }
 <ng-container *ngFor="let state of states">
-    <app-state [name]="state"></app-state>
+    <app-state [name]="state" [cardBool]="cardBool" [card]="card" (booleanEmitter)="onStateClick()"></app-state>
   </ng-container>
     <app-add-button (addStateEvent)="listenAddButton()"></app-add-button>
     @if (addButtonPushed) {
@@ -29,5 +29,8 @@
         (blur)="onInputBlur()">
         <button (click)="newState(newstate.value)">Añadir</button>
     }
+@if(cardBool){
+    <app-card id="drag-card" name="{{card.name}}" surname="{{card.surname}}" rol="{{card.rol}}" id="{{card.id}}"></app-card>
+}
 
  

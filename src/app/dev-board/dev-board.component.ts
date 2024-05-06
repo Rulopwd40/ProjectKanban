@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, Output, input } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild, input } from '@angular/core';
 import { CardComponent } from '../card/card.component';
 import { CommonModule } from '@angular/common';
-
+import { ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-dev-board',
@@ -11,11 +11,12 @@ import { CommonModule } from '@angular/common';
   styleUrl: './dev-board.component.css'
 })
 export class DevBoardComponent {
- @Input() formData: any;
+  @ViewChild('boardContainer') boardContainer!: ElementRef;
+  @Input() formData: any;
  cards: CardComponent[] = [];
  id: number=1;
  @Output() openFormEvent= new EventEmitter();
- 
+ @Output() cardClickedEvent= new EventEmitter();
   FormEvent(){
     this.openFormEvent.emit();
  }
@@ -29,5 +30,16 @@ export class DevBoardComponent {
     this.id = this.id + 1;
     this.cards.push(card); // Agregar la nueva tarjeta al arreglo de tarjetas
   }
+}
+
+cardClicked(index: number) {
+  const clickedCard = this.cards[index];
+  const attributes = { // Atributos de la tarjeta clickeada
+    name: clickedCard.name,
+    surname: clickedCard.surname,
+    rol: clickedCard.rol,
+    id: clickedCard.id
+  };
+  this.cardClickedEvent.emit(attributes); // Emitir los atributos de la tarjeta clickeada
 }
 }

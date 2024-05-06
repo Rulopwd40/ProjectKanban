@@ -2,7 +2,10 @@
 <input type="search">
 <button (click)="FormEvent()">+</button>
 
-<section *ngFor="let card of cards">
-    <div><app-card name="{{card.name}}" surname="{{card.surname}}" rol="{{card.rol}}" id="{{card.id}}" ></app-card></div>
-</section>
+<div *ngFor="let card of cards; let i = index">
+    <div (click)="cardClicked(i)">
+      <!-- Renderizar la tarjeta -->
+      <app-card [name]="card.name" [surname]="card.surname" [rol]="card.rol"></app-card>
+    </div>
+  </div>
 <app-card name="dia" surname="niggae" rol="CP Maker" id="129"></app-card>

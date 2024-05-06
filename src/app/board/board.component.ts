@@ -24,6 +24,8 @@ export class BoardComponent {
   addBtt=false;
   openForm=false;
   formData: any= {};
+  card: CardComponent = new CardComponent;
+  cardBool=false;
   listenAddButton(){
     
     this.addButtonPushed=true;
@@ -47,5 +49,14 @@ export class BoardComponent {
     this.devBoardComponent.cardListener();
     this.openForm = false; // Cerrar el formulario después de enviar
   }
-  
+  handleCardClicked(attributes:any){
+    this.card.name= attributes.name;
+    this.card.surname= attributes.surname;
+    this.card.rol=attributes.rol;
+    this.card.id=attributes.id;
+    this.cardBool=true;
+  }
+  onStateClick(){
+    this.cardBool=false;
+  }
 }
