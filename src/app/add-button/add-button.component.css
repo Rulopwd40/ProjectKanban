@@ -1,5 +1,8 @@
-button{
-    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.08);
-    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.08);
-    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.08);
+span{
+    background-color: transparent;
+    border: none;
+    font-size: 50px;
+    font-weight: bold;
+    color: rgb(57, 57, 57);
+    cursor: pointer;
 }

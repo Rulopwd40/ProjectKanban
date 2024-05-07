@@ -2,11 +2,12 @@ import { Component, EventEmitter, Input, Output, ViewChild, input } from '@angul
 import { CardComponent } from '../card/card.component';
 import { CommonModule } from '@angular/common';
 import { ElementRef } from '@angular/core';
+import {MatIconModule} from '@angular/material/icon';
 
 @Component({
   selector: 'app-dev-board',
   standalone: true,
-  imports: [CardComponent,CommonModule],
+  imports: [CardComponent,CommonModule,MatIconModule],
   templateUrl: './dev-board.component.html',
   styleUrl: './dev-board.component.css'
 })

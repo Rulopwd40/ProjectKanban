@@ -1,8 +1,14 @@
 <!--state.component.html-->
-<p>{{name}}</p>
-<div (click)="onClick()">
-    <ng-container  *ngFor="let card of cards">
-        <app-card [name]="card.name" [surname]="card.surname" [id]="card.id" [rol]="card.rol"></app-card>
+<div class="state-container">
+  <p>{{ name }}</p>
+  <div (click)="onClick()" class="cards">
+    <ng-container *ngFor="let card of cards">
+      <app-card
+        [name]="card.name"
+        [surname]="card.surname"
+        [id]="card.id"
+        [rol]="card.rol"
+      ></app-card>
     </ng-container>
-
+  </div>
 </div>
