@@ -4,7 +4,7 @@
 
 <div *ngFor="let card of cards; let i = index">
     <div (click)="cardClicked(i)">
-      <!-- Renderizar la tarjeta -->
+     
       <app-card [name]="card.name" [surname]="card.surname" [rol]="card.rol"></app-card>
     </div>
   </div>

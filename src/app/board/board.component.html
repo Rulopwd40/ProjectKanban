@@ -1,5 +1,32 @@
 <!--board.component.html-->
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <app-dev-board [formData]="formData" (openFormEvent)="listenFormEvent()" (cardClickedEvent)="handleCardClicked($event)"></app-dev-board>
 
 @if(openForm){
@@ -33,4 +60,3 @@
     <app-card id="drag-card" name="{{card.name}}" surname="{{card.surname}}" rol="{{card.rol}}" id="{{card.id}}"></app-card>
 }
 
- 
