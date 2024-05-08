@@ -30,8 +30,10 @@
     <app-state [name]="state" [cardBool]="cardBool" [card]="card" (booleanEmitter)="onStateClick()"></app-state>
   </ng-container>
   @if (addButtonPushed) {
-  <input #newstate (keyup.enter)="newState(newstate.value)" (blur)="onInputBlur()" />
-  <button (click)="newState(newstate.value)">Añadir</button>
+  <div class="overlay bg-blur modal-popup">
+    <input class="" #newstate (keyup.enter)="newState(newstate.value)" (blur)="onInputBlur()" />
+    <button (click)="newState(newstate.value)">Añadir</button>
+  </div>
   } @if(cardBool){
   <app-card id="drag-card" name="{{ card.name }}" surname="{{ card.surname }}" rol="{{ card.rol }}"
     id="{{ card.id }}"></app-card>
