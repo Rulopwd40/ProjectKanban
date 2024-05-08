@@ -17,7 +17,6 @@ p {
 p:hover {
     opacity: 70%;
     cursor: pointer;
-    color:whitesmoke;
 }
 *{
     position: relative;

@@ -16,3 +16,8 @@ button {
     border-radius: 50%;
     background-color: transparent;
 }
+.addProgrammerSymbol{
+    padding: 0px;
+    width: 36px;
+    height: 36px;
+}

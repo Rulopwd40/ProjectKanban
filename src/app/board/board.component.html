@@ -4,7 +4,6 @@
 
   <!--
     ???? QUE HACE ESTO?
-    
   -->
   @if(openForm){
   <div class="bg-darken-blur">
@@ -27,7 +26,7 @@
   </div>
   }
   <ng-container *ngFor="let state of states">
-    <app-state [name]="state" [cardBool]="cardBool" [card]="card" (booleanEmitter)="onStateClick()"></app-state>
+    <app-state [name]="state" [cardBool]="cardBool" [card]="card"  (booleanEmitter)="onStateClick()"></app-state>
   </ng-container>
   @if (addButtonPushed) {
   <div class="overlay bg-blur modal-popup">
@@ -39,4 +38,6 @@
     id="{{ card.id }}"></app-card>
   }
   <app-add-button (addStateEvent)="listenAddButton()"></app-add-button>
+
+
 </div>

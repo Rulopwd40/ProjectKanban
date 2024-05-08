@@ -1,6 +1,6 @@
 <!--state.component.html-->
 <div class="state-container">
-  <p>{{ name }}</p>
+  <p [style.background-color]="generateRandomRGBColor()">{{ name }}</p>
   <div (click)="onClick()" class="cards">
     <ng-container *ngFor="let card of cards">
       <app-card

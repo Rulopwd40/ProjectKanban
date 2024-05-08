@@ -25,5 +25,11 @@ export class StateComponent {
      }
     
   }
-
+  generateRandomRGBColor(): string {
+    const red = Math.floor(Math.random() * 256);
+    const green = Math.floor(Math.random() * 256);
+    const blue = Math.floor(Math.random() * 256);
+    const alpha = Math.random().toFixed(2); // Random alpha value between 0 and 1
+    return `rgba(${red}, ${green}, ${blue}, ${alpha})`;
+  }
 }
