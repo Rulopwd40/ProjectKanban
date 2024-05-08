@@ -1,65 +1,40 @@
 <div class="board">
-  <app-dev-board
-    [formData]="formData"
-    (openFormEvent)="listenFormEvent()"
-    (cardClickedEvent)="handleCardClicked($event)"
-  ></app-dev-board>
+  <app-dev-board [formData]="formData" (openFormEvent)="listenFormEvent()"
+    (cardClickedEvent)="handleCardClicked($event)"></app-dev-board>
 
+  <!--
+    ???? QUE HACE ESTO?
+    
+  -->
   @if(openForm){
-  <ng-container class="modal" *ngIf="openForm">
-    <form class="overlay" (submit)="submitForm($event)">
-      <div class="name-input">
-        <input
-          type="text"
-          placeholder="Nombre"
-          [(ngModel)]="formData.name"
-          name="name"
-        />
-      </div>
-      <div class="surname-input">
-        <input
-          type="text"
-          placeholder="Apellido"
-          [(ngModel)]="formData.surname"
-          name="surname"
-        />
-      </div>
-      <div class="rol-input">
-        <input
-          type="text"
-          placeholder="Rol"
-          [(ngModel)]="formData.rol"
-          name="rol"
-        />
-      </div>
+  <div class="bg-darken-blur">
+    <ng-container class="modal-conteiner" *ngIf="openForm">
+      <form class="overlay bg-blur modal-popup" (submit)="submitForm($event)">
+        <div class="name-input txt-input">
+          <input type="text" placeholder="Nombre" [(ngModel)]="formData.name" name="name" />
+        </div>
+        <div class="surname-input txt-input">
+          <input type="text" placeholder="Apellido" [(ngModel)]="formData.surname" name="surname" />
+        </div>
+        <br>
+        <div class="rol-input ">
+          <input type="text" placeholder="Rol" [(ngModel)]="formData.rol" name="rol" />
+        </div>
 
-      <button type="submit">Añadir</button>
-    </form>
-  </ng-container>
+        <button type="submit">Añadir</button>
+      </form>
+    </ng-container>
+  </div>
   }
   <ng-container *ngFor="let state of states">
-    <app-state
-      [name]="state"
-      [cardBool]="cardBool"
-      [card]="card"
-      (booleanEmitter)="onStateClick()"
-    ></app-state>
+    <app-state [name]="state" [cardBool]="cardBool" [card]="card" (booleanEmitter)="onStateClick()"></app-state>
   </ng-container>
   @if (addButtonPushed) {
-  <input
-    #newstate
-    (keyup.enter)="newState(newstate.value)"
-    (blur)="onInputBlur()"
-  />
+  <input #newstate (keyup.enter)="newState(newstate.value)" (blur)="onInputBlur()" />
   <button (click)="newState(newstate.value)">Añadir</button>
   } @if(cardBool){
-  <app-card
-    id="drag-card"
-    name="{{ card.name }}"
-    surname="{{ card.surname }}"
-    rol="{{ card.rol }}"
-    id="{{ card.id }}"
-  ></app-card>
+  <app-card id="drag-card" name="{{ card.name }}" surname="{{ card.surname }}" rol="{{ card.rol }}"
+    id="{{ card.id }}"></app-card>
   }
   <app-add-button (addStateEvent)="listenAddButton()"></app-add-button>
 </div>

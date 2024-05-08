@@ -3,17 +3,16 @@
   <div class="board-input">
     <input type="text" placeholder="Buscar" />
     <button (click)="FormEvent()">
-      <mat-icon>home</mat-icon>
+      <p>🧑</p>
     </button>
   </div>
 
   <div *ngFor="let card of cards; let i = index">
     <div (click)="cardClicked(i)">
-      <app-card
-        [name]="card.name"
-        [surname]="card.surname"
-        [rol]="card.rol"
-      ></app-card>
+
+      <app-card [name]="card.name" [surname]="card.surname" [rol]="card.rol" [id]="card.id"></app-card>
+
     </div>
+
   </div>
 </div>
