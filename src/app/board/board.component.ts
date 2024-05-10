@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild } from '@angular/core';
 import { DevBoardComponent } from '../dev-board/dev-board.component';
-import { AddButtonComponent } from '../add-button/add-button.component';
+
 import { StateComponent } from '../state/state.component';
 import { CommonModule } from '@angular/common';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
@@ -13,7 +13,7 @@ import { CardComponent } from '../card/card.component';
 @Component({
   selector: 'app-board',
   standalone: true,
-  imports: [DevBoardComponent,AddButtonComponent,StateComponent,CommonModule,MatFormFieldModule,MatInputModule, FormsModule, ReactiveFormsModule,CardComponent], // Agrega FormsModule y ReactiveFormsModule
+  imports: [DevBoardComponent,StateComponent,CommonModule,MatFormFieldModule,MatInputModule, FormsModule, ReactiveFormsModule,CardComponent], // Agrega FormsModule y ReactiveFormsModule
   templateUrl: './board.component.html',
   styleUrl: './board.component.css'
 })
@@ -42,12 +42,18 @@ export class BoardComponent {
   listenFormEvent(){
     this.openForm=true;
   }
-  submitForm(event: Event) {
+  submitForm(event: any) {
     event.preventDefault();
-    // Guardar los datos del formulario en formData
-    // Aquí puedes agregar lógica para validar el formulario si es necesario
-    this.devBoardComponent.cardListener();
-    this.openForm = false; // Cerrar el formulario después de enviar
+    
+    if(this.formData.name!=undefined && this.formData.surname!=undefined && this.formData.rol!=undefined){
+      this.devBoardComponent.cardListener();
+      this.openForm = false; // Cerrar el formulario después de enviar
+    }
+    else{
+      alert('Campo Vacío');
+    }
+    
+    
   }
   handleCardClicked(attributes:any){
     this.card.name= attributes.name;
@@ -59,15 +65,11 @@ export class BoardComponent {
   onStateClick(){
     this.cardBool=false;
   }
-  /**
-   * generateRandomRGBColor(): string {
-    const red = Math.floor(Math.random() * 256);
-    const green = Math.floor(Math.random() * 256);
-    const blue = Math.floor(Math.random() * 256);
-    const alpha = Math.random().toFixed(2); // Random alpha value between 0 and 1
-    return `rgba(${red}, ${green}, ${blue}, ${alpha})`;
+
+  FormClose(){
+    this.openForm=false;
   }
-   * @returns 
-   */
-  
+  closeAddState(){
+    this.addButtonPushed=false;
+  }
 }

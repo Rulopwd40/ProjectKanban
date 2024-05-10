@@ -33,7 +33,7 @@ export class DevBoardComponent {
   }
 }
 
-cardClicked(index: number) {
+/*cardClicked(index: number) {
   const clickedCard = this.cards[index];
   const attributes = { // Atributos de la tarjeta clickeada
     name: clickedCard.name,
@@ -42,5 +42,5 @@ cardClicked(index: number) {
     id: clickedCard.id
   };
   this.cardClickedEvent.emit(attributes); // Emitir los atributos de la tarjeta clickeada
-}
+}*/
 }

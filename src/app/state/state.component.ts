@@ -25,11 +25,18 @@ export class StateComponent {
      }
     
   }
-  generateRandomRGBColor(): string {
-    const red = Math.floor(Math.random() * 256);
-    const green = Math.floor(Math.random() * 256);
-    const blue = Math.floor(Math.random() * 256);
-    const alpha = Math.random().toFixed(2); // Random alpha value between 0 and 1
-    return `rgba(${red}, ${green}, ${blue}, ${alpha})`;
+  generateRandomRGBColor(name: string): string {
+    switch (name) {
+      case 'Backlog':
+        return 'rgb(198, 133, 133)';
+      case 'To-Do':
+        return 'rgb(198, 133, 184)';
+      case 'Doing':
+        return 'rgb(133, 171, 198)';
+      case 'Done':
+        return 'rgb(146, 198, 133)';
+      default:
+        return 'rgb(255, 255, 255)'; // Valor por defecto
+    }
   }
 }

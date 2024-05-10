@@ -9,13 +9,14 @@
         </span>
     </button>
   </div>
+<div class="card-container">
+  <div  *ngFor="let card of cards; let i = index">
+  <div >
 
-  <div *ngFor="let card of cards; let i = index">
-    <div (click)="cardClicked(i)">
-
-      <app-card [name]="card.name" [surname]="card.surname" [rol]="card.rol" [id]="card.id"></app-card>
-
-    </div>
+    <app-card [name]="card.name" [surname]="card.surname" [rol]="card.rol" [id]="card.id"></app-card>
 
   </div>
+
 </div>
+</div></div>
+  

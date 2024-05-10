@@ -1,6 +1,11 @@
-
-board-input {
+.board-container{
+    
+    width: 100%;
+    height:100px;
+}
+.board-input {
     display: flex;
+    
 }
 
 input {
@@ -20,4 +25,15 @@ button {
     padding: 0px;
     width: 36px;
     height: 36px;
+}
+.card-container{
+    position: relative;
+    margin-top:15px;
+    width: 100%;
+    height:600px;
+    border-radius: 15px;
+    background-color: rgb(72,75,106);
+}
+.card-container:hover{
+    box-shadow: 0px 0px 10px rgba(0,0,7);
 }

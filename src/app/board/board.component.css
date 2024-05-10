@@ -1,6 +1,9 @@
 * {
     display: inline-block;
     padding: 5px;
+    
+   
+    
 }
 
 .board {
@@ -9,12 +12,15 @@
     height: 700px;
     justify-content: space-between;
     flex-grow: initial;
+    background-color:white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.717);
+    border-radius:5px;
 }
 
 
 
 button {
-    background-color: lightgrey;
+    background-color: rgb(88, 144, 151);
     height: 30px;
     width: 60px;
 }
@@ -27,7 +33,7 @@ app-add-button {
 
 app-dev-board {
     max-height: max-content;
-    background-color: rgb(156, 170, 196);
+    background-color: rgb(72,75,106);
     width: 20%;
     padding: 15px;
     border-radius: 5px;
@@ -57,14 +63,14 @@ app-state {
 
 .overlay {
     position: absolute;
-
+    background-color: rgb(72,75,106);
     border-radius: 5px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
     z-index: 1;
 }
 
 .overlay input {
-    background-color: transparent;
+    background-color: white;
     border: none;
     height: 20px;
     width: 100px;
@@ -80,7 +86,7 @@ app-state {
 }
 
 .overlay button {
-    background-color: transparent;
+    background-color: rgb(255, 255, 255);
     color: rgb(0, 0, 0);
     border: none;
     border-radius: 10px;
@@ -90,8 +96,18 @@ app-state {
     transition-duration: 0.3s;
 }
 
-.overlay button:hover {
-    background-color: rgba(255, 255, 255, 0.88);
+.overlay .cancel-button:hover{
+    background-color: rgb(160, 59, 59);
+    color: rgb(255, 255, 255);
+    border: none;
+    text-decoration: solid;
+    border-radius: 10px;
+    font-family: sans-serif;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.717);
+    cursor: pointer;
+}
+.overlay .add-button:hover {
+    background-color: rgb(60, 128, 173);
     color: rgb(255, 255, 255);
     border: none;
     text-decoration: solid;
