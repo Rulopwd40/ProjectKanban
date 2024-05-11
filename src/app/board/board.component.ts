@@ -13,32 +13,22 @@ import { CardComponent } from '../card/card.component';
 @Component({
   selector: 'app-board',
   standalone: true,
-  imports: [DevBoardComponent,StateComponent,CommonModule,MatFormFieldModule,MatInputModule, FormsModule, ReactiveFormsModule,CardComponent], // Agrega FormsModule y ReactiveFormsModule
+  imports: [DevBoardComponent,StateComponent,CommonModule,MatFormFieldModule,MatInputModule, FormsModule, ReactiveFormsModule,CardComponent],
   templateUrl: './board.component.html',
   styleUrl: './board.component.css'
 })
 export class BoardComponent {
   @ViewChild(DevBoardComponent)devBoardComponent: DevBoardComponent = new DevBoardComponent;
+  @ViewChild(StateComponent)stateComponent: StateComponent = new StateComponent;
   states: string[] = ["Backlog", "To-Do", "Doing", "Done"];
-  addButtonPushed=false;
   addBtt=false;
   openForm=false;
+  openStateF=false;
   formData: any= {};
+  stateFormdata: any={};
   card: CardComponent = new CardComponent;
   cardBool=false;
-  listenAddButton(){
-    
-    this.addButtonPushed=true;
-    
-  }
-  newState(namestate:string){
-    
-    this.states.push(namestate);
-    this.addButtonPushed=false;
-  };
-  onInputBlur() {
-    this.addButtonPushed = false;
-  }
+  
   listenFormEvent(){
     this.openForm=true;
   }
@@ -52,8 +42,9 @@ export class BoardComponent {
     else{
       alert('Campo Vacío');
     }
-    
-    
+  }
+  FormClose(){
+    this.openForm=false;
   }
   handleCardClicked(attributes:any){
     this.card.name= attributes.name;
@@ -66,10 +57,21 @@ export class BoardComponent {
     this.cardBool=false;
   }
 
-  FormClose(){
-    this.openForm=false;
+  openStateForm(){
+    this.openStateF=true;
   }
-  closeAddState(){
-    this.addButtonPushed=false;
+  submitStateForm(event: any) {
+    event.preventDefault();
+    
+    if(this.stateFormdata.taskname!=undefined && this.stateFormdata.description!=undefined && this.stateFormdata.dev!=undefined){
+      this.stateComponent.cardListener();
+      this.openStateF = false; // Cerrar el formulario después de enviar
+    }
+    else{
+      alert('Campo Vacío');
+    }
+  }
+  closeStateForm(){
+    this.openStateF=false;
   }
 }

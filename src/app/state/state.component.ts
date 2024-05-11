@@ -3,10 +3,11 @@ import { CardComponent } from '../card/card.component';
 import { BoardComponent } from '../board/board.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { StatecardComponent } from '../statecard/statecard.component';
 @Component({
   selector: 'app-state',
   standalone: true,
-  imports: [CardComponent,BoardComponent,CommonModule],
+  imports: [CardComponent,BoardComponent,CommonModule,StatecardComponent],
   templateUrl: './state.component.html',
   styleUrl: './state.component.css'
 })
@@ -14,9 +15,12 @@ export class StateComponent {
   @Input() name: string = '';
   @Input() card: CardComponent= new CardComponent;
   @Input() cardBool: boolean=false;
+  @Input() stateFormData: any;
   @Output() booleanEmitter= new EventEmitter();
+  @Output() formEmmiter = new EventEmitter();
   cards: CardComponent[]=[];
-  
+  statecard: StatecardComponent= new StatecardComponent;
+  statecards: StatecardComponent[]=[];
   onClick(){
     
     if(this.cardBool){
@@ -38,5 +42,19 @@ export class StateComponent {
       default:
         return 'rgb(255, 255, 255)'; // Valor por defecto
     }
+  }
+  backlog(){
+    if(this.name=="Backlog")return true;
+    else return false;
+  }
+  openForm(){
+    this.formEmmiter.emit();
+  }
+  cardListener(){
+    
+    this.statecard.taskname=this.stateFormData.taskname;
+    this.statecard.description=this.stateFormData.description;
+    this.statecard.dev=this.stateFormData.dev;
+    this.statecards.push(this.statecard)
   }
 }

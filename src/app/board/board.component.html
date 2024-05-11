@@ -27,18 +27,30 @@
     </ng-container>
   </div>
   }
+  @if(openStateF){
+    <ng-container class="modal-conteiner" >
+      <form class="overlay bg-blur modal-popup" (submit)="submitStateForm($event)">
+        <div class="name-input txt-input">
+          <input type="text" placeholder="Tarea" [(ngModel)]="stateFormdata.taskname" name="taskname" />
+        </div>
+        <div class="surname-input txt-input">
+          <input type="text" placeholder="Descripcion" [(ngModel)]="stateFormdata.description" name="description" />
+        </div>
+        <br>
+        <div class="rol-input ">
+          <input type="text" placeholder="Developer:" [(ngModel)]="stateFormdata.dev" name="dev" />
+        </div>
+
+        <button class='add-button' type="submit">Añadir</button>
+        <button class='cancel-button'(click)="closeStateForm()">Cancelar</button>
+      </form>
+    </ng-container>
+  }
   <!--Generar columnas-->
   <ng-container *ngFor="let state of states">
-    <app-state [name]="state" [cardBool]="cardBool" [card]="card"  (booleanEmitter)="onStateClick()"></app-state>
+    <app-state [name]="state" [cardBool]="cardBool" [stateFormData]="stateFormdata"  (booleanEmitter)="onStateClick()" (formEmmiter)="openStateForm()"></app-state>
   </ng-container>
-  <!--Agregar Columna-->
-  @if (addButtonPushed) {
-  <div class="overlay bg-blur modal-popup">
-    <input class="" #newstate (keyup.enter)="newState(newstate.value)" (blur)="onInputBlur()" />
-    <button class="add-button" (click)="newState(newstate.value)">Añadir</button>
-    <button class="cancel-button" (click)="closeAddState()">Cancelar</button>
-  </div>
-  } 
+  
   
   <!--@if(cardBool){
   <app-card id="drag-card" name="{{ card.name }}" surname="{{ card.surname }}" rol="{{ card.rol }}"

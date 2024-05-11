@@ -28,3 +28,7 @@ p:hover {
     height: 100%;
 
 }
+.add-button{
+    border-radius:100%;
+    background-color: rgb(241, 241, 241);
+}
