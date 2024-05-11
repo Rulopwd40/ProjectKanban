@@ -28,7 +28,7 @@ export class BoardComponent {
   stateFormdata: any={};
   card: CardComponent = new CardComponent;
   cardBool=false;
-  
+  selectDevM=false;
   listenFormEvent(){
     this.openForm=true;
   }
@@ -62,16 +62,20 @@ export class BoardComponent {
   }
   submitStateForm(event: any) {
     event.preventDefault();
-    
-    if(this.stateFormdata.taskname!=undefined && this.stateFormdata.description!=undefined && this.stateFormdata.dev!=undefined){
+    let temp=this.devBoardComponent.obtainDev(this.stateFormdata.dev);
+    if(this.stateFormdata.taskname!=undefined && this.stateFormdata.description!=undefined && temp){
       this.stateComponent.cardListener();
       this.openStateF = false; // Cerrar el formulario después de enviar
     }
     else{
-      alert('Campo Vacío');
+      if(!temp)alert('Campo Vacío');
     }
   }
   closeStateForm(){
     this.openStateF=false;
+    
+  }
+  selectDev(){
+    
   }
 }

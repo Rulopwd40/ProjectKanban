@@ -4,31 +4,23 @@ import { BoardComponent } from '../board/board.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StatecardComponent } from '../statecard/statecard.component';
+import { DevBoardComponent } from '../dev-board/dev-board.component';
 @Component({
   selector: 'app-state',
   standalone: true,
-  imports: [CardComponent,BoardComponent,CommonModule,StatecardComponent],
+  imports: [CardComponent,BoardComponent,CommonModule,StatecardComponent,DevBoardComponent],
   templateUrl: './state.component.html',
   styleUrl: './state.component.css'
 })
 export class StateComponent {
   @Input() name: string = '';
-  @Input() card: CardComponent= new CardComponent;
   @Input() cardBool: boolean=false;
   @Input() stateFormData: any;
   @Output() booleanEmitter= new EventEmitter();
   @Output() formEmmiter = new EventEmitter();
-  cards: CardComponent[]=[];
-  statecard: StatecardComponent= new StatecardComponent;
+  
   statecards: StatecardComponent[]=[];
-  onClick(){
-    
-    if(this.cardBool){
-      this.booleanEmitter.emit();
-      this.cards.push(this.card);
-     }
-    
-  }
+  
   generateRandomRGBColor(name: string): string {
     switch (name) {
       case 'Backlog':
@@ -51,10 +43,13 @@ export class StateComponent {
     this.formEmmiter.emit();
   }
   cardListener(){
+    if(this.stateFormData){
+      const statecard= new StatecardComponent();
+      statecard.taskname=this.stateFormData.taskname;
+      statecard.description=this.stateFormData.description;
+      statecard.dev=this.stateFormData.dev;
+      this.statecards.push(statecard)
+    }
     
-    this.statecard.taskname=this.stateFormData.taskname;
-    this.statecard.description=this.stateFormData.description;
-    this.statecard.dev=this.stateFormData.dev;
-    this.statecards.push(this.statecard)
   }
 }

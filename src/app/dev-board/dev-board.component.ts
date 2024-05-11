@@ -27,13 +27,23 @@ export class DevBoardComponent {
     card.name = this.formData.name;
     card.surname = this.formData.surname;
     card.rol = this.formData.rol;
-    card.id = this.id.toString();
+    card.id = this.id;
     this.id = this.id + 1;
     this.cards.push(card); // Agregar la nueva tarjeta al arreglo de tarjetas
   }
 }
+//Existe dev?
+  obtainDev(id: number){
+    let card=this.cards.find(carta => carta.id==id);
+    if(card) return true;
+    else{
+      alert("No existe Developer con ID: " + id);
+      return false;
+    }
+  }
 
-/*cardClicked(index: number) {
+
+  /*cardClicked(index: number) {
   const clickedCard = this.cards[index];
   const attributes = { // Atributos de la tarjeta clickeada
     name: clickedCard.name,

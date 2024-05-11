@@ -11,5 +11,5 @@ export class CardComponent {
   @Input() name!: string;
   @Input() surname!: string;
   @Input() rol!: string;
-  @Input() id!: string;
+  @Input() id!: number;
 }
