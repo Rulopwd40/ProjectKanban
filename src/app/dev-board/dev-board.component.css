@@ -1,11 +1,9 @@
 .board-container{
-    
     width: 100%;
     height:100px;
 }
 .board-input {
     display: flex;
-    
 }
 
 input {
@@ -17,6 +15,7 @@ input {
 }
 
 button {
+    margin: 5px;
     width: 19%;
     border-radius: 50%;
     background-color: transparent;
@@ -29,10 +28,14 @@ button {
 .card-container{
     position: relative;
     margin-top:15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
     height:600px;
     border-radius: 15px;
     background-color: rgb(72,75,106);
+    justify-content: flex-start;
 }
 .card-container:hover{
     box-shadow: 0px 0px 10px rgba(0,0,7);

@@ -1,8 +1,9 @@
-section{
-    width: 90%;
+.card-developer{
+    width: 150px;
     height: 120px;
     background-color: antiquewhite;
-    display: inline-block;
+    display: block;
     border-radius: 5%;
     padding: 8px;
+    margin-top: 10px;
 }
