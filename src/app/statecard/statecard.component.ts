@@ -11,4 +11,6 @@ export class StatecardComponent {
 @Input() taskname: string='';
 @Input() description: string='';
 @Input() dev: string='';
+//scale de las cards
+@Input() cardSize: number = 1;
 }

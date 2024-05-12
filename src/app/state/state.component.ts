@@ -18,9 +18,10 @@ export class StateComponent {
   @Input() stateFormData: any;
   @Output() booleanEmitter= new EventEmitter();
   @Output() formEmmiter = new EventEmitter();
-  
+  //lista de las cartas
   statecards: StatecardComponent[]=[];
-  
+  public cardSizeEmitter: EventEmitter<number> = new EventEmitter<number>();
+
   generateRandomRGBColor(name: string): string {
     switch (name) {
       case 'Backlog':
@@ -49,7 +50,25 @@ export class StateComponent {
       statecard.description=this.stateFormData.description;
       statecard.dev=this.stateFormData.dev;
       this.statecards.push(statecard)
+      this.adjustCardSize(this.statecards);
     }
-    
+  }
+
+/*
+  public onCardAdded(): void {
+    this.adjustCardSize();
+  }
+  
+  public onCardRemoved(): void {
+    this.adjustCardSize();
+  }*/
+  private adjustCardSize(stateCardList: StatecardComponent[]): void {
+    const totalCards = stateCardList.length;
+    //fixear esto
+    stateCardList.forEach((card, index) => {
+      let decimalesArestar = totalCards/10;
+      console.log(card.cardSize , totalCards);
+      card.cardSize = totalCards === 1 ? 1 : 0.5 ** (index + decimalesArestar);
+    });
   }
 }
