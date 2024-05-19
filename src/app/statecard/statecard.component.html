@@ -1,6 +1,12 @@
 <div class="task-card" [style.scale]="cardSize">
-    <p>{{taskname}}</p>
+    <div class="card-title">
+        <p class="card-task-name">{{taskname}}</p>
+    </div>
+    <p class="card-task-desc">Desc.: </p> <span>
+        {{description}}
+    </span>
     <br>
-    <p>{{description}} {{dev}}</p>
+    <p class="card-task-desc">Dev.:</p><span>
+        {{dev}}
+    </span>
 </div>
-
