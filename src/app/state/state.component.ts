@@ -29,6 +29,7 @@ export class StateComponent {
   @Output() booleanEmitter = new EventEmitter();
   @Output() formEmitter = new EventEmitter();
 
+  dev: string = '';
   statecards: StatecardComponent[] = [];
   public cardSizeEmitter: EventEmitter<number> = new EventEmitter<number>();
 
@@ -60,7 +61,7 @@ export class StateComponent {
       const statecard = new StatecardComponent();
       statecard.taskname = this.stateFormData.taskname;
       statecard.description = this.stateFormData.description;
-      statecard.dev = this.stateFormData.dev;
+      statecard.dev = this.dev;
       this.statecards.push(statecard);
       this.adjustCardSize(this.statecards);
     }
@@ -80,5 +81,8 @@ export class StateComponent {
     } else {
       transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
     }
+  }
+  getdev(dev:string){
+    this.dev=dev;
   }
 }

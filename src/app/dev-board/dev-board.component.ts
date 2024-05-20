@@ -36,7 +36,7 @@ export class DevBoardComponent {
 //Existe dev?
   obtainDev(id: number){
     let card=this.cards.find(carta => carta.id==id);
-    if(card) return true;
+    if(card) return card;
     else{
       alert("No existe Developer con ID: " + id);
       return false;

@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardComponent } from '../card/card.component';
 import { CdkDragDrop, DragDropModule,moveItemInArray,transferArrayItem } from '@angular/cdk/drag-drop';
+import { StatecardComponent } from '../statecard/statecard.component';
 
 @Component({
   selector: 'app-board',
@@ -20,7 +21,8 @@ import { CdkDragDrop, DragDropModule,moveItemInArray,transferArrayItem } from '@
     FormsModule,
     ReactiveFormsModule,
     CardComponent,
-    DragDropModule
+    DragDropModule,
+    StatecardComponent
   ],
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.css']
@@ -81,6 +83,7 @@ export class BoardComponent {
     event.preventDefault();
     let temp = this.devBoardComponent.obtainDev(this.stateFormdata.dev);
     if (this.stateFormdata.taskname && this.stateFormdata.description && temp) {
+      this.stateComponent.getdev(temp.name + ' ' + temp.id);
       this.stateComponent.cardListener();
       this.openStateF = false;
     } else {
