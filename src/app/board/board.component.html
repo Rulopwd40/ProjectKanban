@@ -14,7 +14,6 @@
 
   <!-- Formulario general -->
   <ng-container *ngIf="openForm">
-    <div class="modal-container">
       <form class="overlay bg-blur modal-popup" (submit)="submitForm($event)">
         <div class="name-input txt-input">
           <input type="text" placeholder="Nombre" [(ngModel)]="formData.name" name="name" />
@@ -29,12 +28,11 @@
         <button class="add-button" type="submit"><span>&#10004;</span></button>
         <button class="cancel-button" (click)="FormClose()"><span>&#10006;</span></button>
       </form>
-    </div>
   </ng-container>
 
   <!-- Formulario de estado -->
   <ng-container *ngIf="openStateF">
-    <div class="modal-container">
+
       <form class="overlay bg-blur modal-popup" (submit)="submitStateForm($event)">
         <div class="name-input txt-input">
           <input type="text" placeholder="Tarea" [(ngModel)]="stateFormdata.taskname" name="taskname" />
@@ -53,6 +51,5 @@
           <p>Seleccione la id del Developer deseado</p>
         </ng-container>
       </form>
-    </div>
   </ng-container>
 </div>

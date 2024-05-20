@@ -6,7 +6,12 @@
     align-items: center;
     overflow: hidden;
     transition: max-height 0.5s ease;
-  }
+}
+
+.cdk-drag {
+    padding: 5%;
+    top:0;
+}
 
 p {
     font-size: 28px;
@@ -32,14 +37,16 @@ p:hover {
 
 .cards {
     width: 100%;
-    height:100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     background-color: rgb(255, 255, 255);
-    box-shadow: 0px,10px,10px, rgba(0, 0, 0, 0.2);
+    box-shadow: 0px, 10px, 10px, rgba(0, 0, 0, 0.2);
     border-radius: 15px;
+    transition: 0.99s;
 }
-.cards:hover{
+
+.cards:hover {
     background-color: rgb(235, 235, 235);
 }
 
@@ -49,14 +56,16 @@ p:hover {
     height: 100px;
     /* Adjust as needed */
     margin: 10px;
-    
+
     /* Example background color */
     transition: transform 0.5s ease;
-    cursor:move;
+    cursor: move;
 }
+
 .statecard:hover {
     transform: scale(1.1);
-  }
+}
+
 .add-button {
     position: absolute;
     text-align: center;
@@ -70,8 +79,11 @@ p:hover {
     border-radius: 90%;
     background-color: rgb(206, 205, 205);
     border-color: transparent;
-    transform: translate(0%, 1000%);
+
     cursor: pointer;
+    /* Adjust as needed*/
+    left:32%;     
+    transform: translate(0%, 1000%);
     transition: 0.3s;
 }
 
@@ -79,7 +91,8 @@ p:hover {
     color: rgb(0, 0, 0);
     color: white;
 }
+
 .cdk-drag.cdk-drag-preview {
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     border-radius: 4px;
-  }
+}

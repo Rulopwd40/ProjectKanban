@@ -16,8 +16,9 @@ input {
 
 button {
     margin: 5px;
-    width: 19%;
     border-radius: 50%;
+    border-style: solid;
+    border-color: white;
     background-color: transparent;
 }
 .addProgrammerSymbol{
@@ -36,8 +37,10 @@ button {
     border-radius: 15px;
     background-color: rgb(72,75,106);
     justify-content: flex-start;
+    transition: 1s;
 }
 .card-container:hover{
     box-shadow: 0px 0px 10px rgba(0,0,7);
+    background-color: rgb(72, 76, 112);
 }
 

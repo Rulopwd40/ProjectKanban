@@ -7,15 +7,13 @@
        [cdkDropListData]="statecards" 
        class="cards">
     <ng-container *ngFor="let card of statecards">
-      <div class="statecard">
         <app-statecard cdkDrag
           [taskname]="card.taskname"
           [description]="card.description"
           [dev]="card.dev">
         </app-statecard>
-      </div>
     </ng-container>
-    <ng-container *ngIf="backlog()">
+    <ng-container *ngIf="backlog()" >
       <button class="add-button" (click)="openForm()">+</button>
     </ng-container>
   </div>
