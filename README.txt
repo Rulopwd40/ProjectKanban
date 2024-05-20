@@ -1,2 +1,0 @@
-Tablero kanban, con tareas las cuales van a tener asignada una duracion y alguien la cual la va a desarrollar. En el tablero las tareas pueden ir avanzando de estado, hasta llegar al estado completado.
-Las personas que van a desarrollar las tareas van a ser parte del equipo de desarrollo y deben poder ser registrados.
