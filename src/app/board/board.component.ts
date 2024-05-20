@@ -1,81 +1,94 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { DevBoardComponent } from '../dev-board/dev-board.component';
-
 import { StateComponent } from '../state/state.component';
 import { CommonModule } from '@angular/common';
-import { FormBuilder,FormGroup,Validators } from '@angular/forms';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Importa FormsModule y ReactiveFormsModule
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardComponent } from '../card/card.component';
+import { CdkDragDrop, DragDropModule,moveItemInArray,transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-board',
   standalone: true,
-  imports: [DevBoardComponent,StateComponent,CommonModule,MatFormFieldModule,MatInputModule, FormsModule, ReactiveFormsModule,CardComponent],
+  imports: [
+    DevBoardComponent,
+    StateComponent,
+    CommonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CardComponent,
+    DragDropModule
+  ],
   templateUrl: './board.component.html',
-  styleUrl: './board.component.css'
+  styleUrls: ['./board.component.css']
 })
 export class BoardComponent {
-  @ViewChild(DevBoardComponent)devBoardComponent: DevBoardComponent = new DevBoardComponent;
-  @ViewChild(StateComponent)stateComponent: StateComponent = new StateComponent;
+  @ViewChild(DevBoardComponent) devBoardComponent!: DevBoardComponent;
+  @ViewChild(StateComponent) stateComponent!: StateComponent;
+
   states: string[] = ["Backlog", "To-Do", "Doing", "Done"];
-  addBtt=false;
-  openForm=false;
-  openStateF=false;
-  formData: any= {};
-  stateFormdata: any={};
-  card: CardComponent = new CardComponent;
-  cardBool=false;
-  selectDevM=false;
-  listenFormEvent(){
-    this.openForm=true;
+  addBtt = false;
+  openForm = false;
+  openStateF = false;
+  formData: any = {};
+  stateFormdata: any = {};
+  card: CardComponent = new CardComponent();
+  cardBool = false;
+  selectDevM = false;
+  
+  getConnectedDropLists(): string[] {
+    return this.states.map(state => `${state}-list`);
   }
+
+  listenFormEvent() {
+    this.openForm = true;
+  }
+
   submitForm(event: any) {
     event.preventDefault();
-    
-    if(this.formData.name!=undefined && this.formData.surname!=undefined && this.formData.rol!=undefined){
+    if (this.formData.name && this.formData.surname && this.formData.rol) {
       this.devBoardComponent.cardListener();
-      this.openForm = false; // Cerrar el formulario después de enviar
-    }
-    else{
+      this.openForm = false;
+    } else {
       alert('Campo Vacío');
     }
   }
-  FormClose(){
-    this.openForm=false;
-  }
-  handleCardClicked(attributes:any){
-    this.card.name= attributes.name;
-    this.card.surname= attributes.surname;
-    this.card.rol=attributes.rol;
-    this.card.id=attributes.id;
-    this.cardBool=true;
-  }
-  onStateClick(){
-    this.cardBool=false;
+
+  FormClose() {
+    this.openForm = false;
   }
 
-  openStateForm(){
-    this.openStateF=true;
+  handleCardClicked(attributes: any) {
+    this.card.name = attributes.name;
+    this.card.surname = attributes.surname;
+    this.card.rol = attributes.rol;
+    this.card.id = attributes.id;
+    this.cardBool = true;
   }
+
+  onStateClick() {
+    this.cardBool = false;
+  }
+
+  openStateForm() {
+    this.openStateF = true;
+  }
+
   submitStateForm(event: any) {
     event.preventDefault();
-    let temp=this.devBoardComponent.obtainDev(this.stateFormdata.dev);
-    if(this.stateFormdata.taskname!=undefined && this.stateFormdata.description!=undefined && temp){
+    let temp = this.devBoardComponent.obtainDev(this.stateFormdata.dev);
+    if (this.stateFormdata.taskname && this.stateFormdata.description && temp) {
       this.stateComponent.cardListener();
-      this.openStateF = false; // Cerrar el formulario después de enviar
-    }
-    else{
-      if(!temp)alert('Campo Vacío');
+      this.openStateF = false;
+    } else {
+      if (!temp) alert('Campo Vacío');
     }
   }
-  closeStateForm(){
-    this.openStateF=false;
-    
-  }
-  selectDev(){
-    
+
+  closeStateForm() {
+    this.openStateF = false;
   }
 }

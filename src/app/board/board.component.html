@@ -1,70 +1,58 @@
 <!--board.component.html-->
 <div class="board">
-  <app-dev-board [formData]="formData" (openFormEvent)="listenFormEvent()"
-    (cardClickedEvent)="handleCardClicked($event)"></app-dev-board>
+  <app-dev-board [formData]="formData" (openFormEvent)="listenFormEvent()" (cardClickedEvent)="handleCardClicked($event)"></app-dev-board>
 
-  <!--Abrir Formulario-->
-
-  <!--Generar columnas-->
-  <ng-container *ngFor="let state of states">
-    <app-state [name]="state" [cardBool]="cardBool" [stateFormData]="stateFormdata" (booleanEmitter)="onStateClick()"
-      (formEmmiter)="openStateForm()"></app-state>
+  <!-- Generar columnas -->
+  <ng-container cdkDropListGroup *ngFor="let state of states">
+    <app-state [name]="state"
+    [cardBool]="cardBool"
+    [stateFormData]="stateFormdata"
+    (booleanEmitter)="onStateClick()"
+    (formEmitter)="openStateForm()"
+    [connectedDropLists]="getConnectedDropLists()"></app-state>
   </ng-container>
 
-
-  <!--@if(cardBool){
-  <app-card id="drag-card" name="{{ card.name }}" surname="{{ card.surname }}" rol="{{ card.rol }}"
-    id="{{ card.id }}"></app-card>
-  }-->
-
-  @if(openForm){
-
-  <ng-container class="modal-conteiner">
-    <form class="overlay bg-blur modal-popup" (submit)="submitForm($event)">
-      <div class="name-input txt-input">
-        <input type="text" placeholder="Nombre" [(ngModel)]="formData.name" name="name" />
-      </div>
-      <div class="surname-input txt-input">
-        <input type="text" placeholder="Apellido" [(ngModel)]="formData.surname" name="surname" />
-      </div>
-      <br>
-      <div class="rol-input ">
-        <input type="text" placeholder="Rol" [(ngModel)]="formData.rol" name="rol" />
-      </div>
-
-      <button class='add-button' type="submit"><span>&#10004;</span></button>
-      <button class='cancel-button' (click)="FormClose()"><span>&#10006;</span></button>
-    </form>
-  </ng-container>
-  }
-
-
-  @if(openStateF){
-  <!--Abrir Formulario-->
-  <ng-container class="modal-conteiner">
-    <form class="overlay bg-blur modal-popup" (submit)="submitStateForm($event)">
-      <div class="name-input txt-input">
-        <input type="text" placeholder="Tarea" [(ngModel)]="stateFormdata.taskname" name="taskname" />
-      </div>
-      <div class="surname-input txt-input">
-        <input type="text" placeholder="Descripcion" [(ngModel)]="stateFormdata.description" name="description" />
-      </div>
-      <br>
-      <div class="rol-input ">
-        <input type="number" placeholder="Developer ID" class="developer-button" [(ngModel)]="stateFormdata.dev"
-          name="dev" />
-      </div>
-
-      <button class='add-button' type="submit"><span>&#10004;</span></button>
-      <button class='cancel-button' (click)="closeStateForm()"><span>&#10006;</span></button>
-      @if(selectDevM){
-      <br>
-      <p> Seleccione la carta del Developer deseado</p>
-      }
-    </form>
+  <!-- Formulario general -->
+  <ng-container *ngIf="openForm">
+    <div class="modal-container">
+      <form class="overlay bg-blur modal-popup" (submit)="submitForm($event)">
+        <div class="name-input txt-input">
+          <input type="text" placeholder="Nombre" [(ngModel)]="formData.name" name="name" />
+        </div>
+        <div class="surname-input txt-input">
+          <input type="text" placeholder="Apellido" [(ngModel)]="formData.surname" name="surname" />
+        </div>
+        <br>
+        <div class="rol-input">
+          <input type="text" placeholder="Rol" [(ngModel)]="formData.rol" name="rol" />
+        </div>
+        <button class="add-button" type="submit"><span>&#10004;</span></button>
+        <button class="cancel-button" (click)="FormClose()"><span>&#10006;</span></button>
+      </form>
+    </div>
   </ng-container>
 
-  }
-
-
+  <!-- Formulario de estado -->
+  <ng-container *ngIf="openStateF">
+    <div class="modal-container">
+      <form class="overlay bg-blur modal-popup" (submit)="submitStateForm($event)">
+        <div class="name-input txt-input">
+          <input type="text" placeholder="Tarea" [(ngModel)]="stateFormdata.taskname" name="taskname" />
+        </div>
+        <div class="surname-input txt-input">
+          <input type="text" placeholder="Descripcion" [(ngModel)]="stateFormdata.description" name="description" />
+        </div>
+        <br>
+        <div class="rol-input">
+          <input type="number" placeholder="Developer ID" class="developer-button" [(ngModel)]="stateFormdata.dev" name="dev" />
+        </div>
+        <button class="add-button" type="submit"><span>&#10004;</span></button>
+        <button class="cancel-button" (click)="closeStateForm()"><span>&#10006;</span></button>
+        <ng-container *ngIf="selectDevM">
+          <br>
+          <p>Seleccione la id del Developer deseado</p>
+        </ng-container>
+      </form>
+    </div>
+  </ng-container>
 </div>

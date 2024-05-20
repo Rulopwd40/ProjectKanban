@@ -5,21 +5,31 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StatecardComponent } from '../statecard/statecard.component';
 import { DevBoardComponent } from '../dev-board/dev-board.component';
+import { CdkDragDrop, moveItemInArray, transferArrayItem, CdkDrag, CdkDropList, DragDropModule } from '@angular/cdk/drag-drop'
 @Component({
   selector: 'app-state',
   standalone: true,
-  imports: [CardComponent,BoardComponent,CommonModule,StatecardComponent,DevBoardComponent],
+  imports: [CardComponent,
+    BoardComponent,
+    CommonModule,
+    StatecardComponent,
+    DevBoardComponent,
+    CdkDropList,
+    CdkDrag
+  ],
   templateUrl: './state.component.html',
   styleUrl: './state.component.css'
 })
+
 export class StateComponent {
   @Input() name: string = '';
-  @Input() cardBool: boolean=false;
+  @Input() cardBool: boolean = false;
   @Input() stateFormData: any;
-  @Output() booleanEmitter= new EventEmitter();
-  @Output() formEmmiter = new EventEmitter();
-  //lista de las cartas
-  statecards: StatecardComponent[]=[];
+  @Input() connectedDropLists: string[] = [];
+  @Output() booleanEmitter = new EventEmitter();
+  @Output() formEmitter = new EventEmitter();
+
+  statecards: StatecardComponent[] = [];
   public cardSizeEmitter: EventEmitter<number> = new EventEmitter<number>();
 
   generateRandomRGBColor(name: string): string {
@@ -36,39 +46,39 @@ export class StateComponent {
         return 'rgb(255, 255, 255)'; // Valor por defecto
     }
   }
-  backlog(){
-    if(this.name=="Backlog")return true;
-    else return false;
+
+  backlog(): boolean {
+    return this.name === "Backlog";
   }
-  openForm(){
-    this.formEmmiter.emit();
+
+  openForm() {
+    this.formEmitter.emit();
   }
-  cardListener(){
-    if(this.stateFormData){
-      const statecard= new StatecardComponent();
-      statecard.taskname=this.stateFormData.taskname;
-      statecard.description=this.stateFormData.description;
-      statecard.dev=this.stateFormData.dev;
-      this.statecards.push(statecard)
+
+  cardListener() {
+    if (this.stateFormData) {
+      const statecard = new StatecardComponent();
+      statecard.taskname = this.stateFormData.taskname;
+      statecard.description = this.stateFormData.description;
+      statecard.dev = this.stateFormData.dev;
+      this.statecards.push(statecard);
       this.adjustCardSize(this.statecards);
     }
   }
 
-/*
-  public onCardAdded(): void {
-    this.adjustCardSize();
-  }
-  
-  public onCardRemoved(): void {
-    this.adjustCardSize();
-  }*/
   private adjustCardSize(stateCardList: StatecardComponent[]): void {
     const totalCards = stateCardList.length;
-    //fixear esto
     stateCardList.forEach((card, index) => {
-      let decimalesArestar = totalCards/10;
-      console.log(card.cardSize , totalCards);
+      let decimalesArestar = totalCards / 10;
       card.cardSize = totalCards === 1 ? 1 : 0.5 ** (index + decimalesArestar);
     });
+  }
+
+  drop(event: CdkDragDrop<StatecardComponent[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
+    }
   }
 }

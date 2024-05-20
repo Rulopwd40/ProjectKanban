@@ -1,16 +1,22 @@
-<!--state.component.html-->
 <div class="state-container">
   <p [style.background-color]="generateRandomRGBColor(name)">{{ name }}</p>
-  <div class="cards">
+  <div cdkDropList
+       [id]="name + '-list'"
+       [cdkDropListConnectedTo]="connectedDropLists" 
+       (cdkDropListDropped)="drop($event)" 
+       [cdkDropListData]="statecards" 
+       class="cards">
     <ng-container *ngFor="let card of statecards">
-      <app-statecard
-        [taskname]="card.taskname"
-        [description]="card.description"
-        [dev]="card.dev"
-      ></app-statecard>
+      <div class="statecard">
+        <app-statecard cdkDrag
+          [taskname]="card.taskname"
+          [description]="card.description"
+          [dev]="card.dev">
+        </app-statecard>
+      </div>
     </ng-container>
-    @if(backlog()){
+    <ng-container *ngIf="backlog()">
       <button class="add-button" (click)="openForm()">+</button>
-    }
+    </ng-container>
   </div>
 </div>

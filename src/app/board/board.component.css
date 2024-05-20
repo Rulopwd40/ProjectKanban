@@ -43,6 +43,7 @@ app-state {
    Este bgcolor cambia las columnas
    */
     background-color: rgb(255, 255, 255);
+    max-width: 200px;
 }
 
 .drag-card {

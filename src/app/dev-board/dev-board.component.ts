@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ElementRef } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 
+
 @Component({
   selector: 'app-dev-board',
   standalone: true,
