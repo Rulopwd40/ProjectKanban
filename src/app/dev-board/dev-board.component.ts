@@ -3,12 +3,13 @@ import { CardComponent } from '../card/card.component';
 import { CommonModule } from '@angular/common';
 import { ElementRef } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
-
-
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { FilterPipe } from '../filter.pipe';
 @Component({
   selector: 'app-dev-board',
   standalone: true,
-  imports: [CardComponent,CommonModule,MatIconModule],
+  imports: [CardComponent,CommonModule,MatIconModule,FormsModule,FilterPipe],
   templateUrl: './dev-board.component.html',
   styleUrl: './dev-board.component.css'
 })
@@ -19,6 +20,7 @@ export class DevBoardComponent {
  id: number=1;
  @Output() openFormEvent= new EventEmitter();
  @Output() cardClickedEvent= new EventEmitter();
+ searchText: any;
   FormEvent(){
     this.openFormEvent.emit();
  }

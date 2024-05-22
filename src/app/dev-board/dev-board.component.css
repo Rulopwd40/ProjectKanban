@@ -11,7 +11,7 @@ input {
     padding: 5px 10px;
     border-radius: 15px;
     border: none;
-    color: white;
+    color: rgb(0, 0, 0);
 }
 
 button {

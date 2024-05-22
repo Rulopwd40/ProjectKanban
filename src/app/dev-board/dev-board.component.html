@@ -2,7 +2,7 @@
 <!--dev-board.component.html-->
 <div class="board-container">
   <div class="board-input">
-    <input type="text" placeholder="Buscar" />
+    <input type="text" placeholder="Buscar" [(ngModel)]="searchText" />
     <button class="addProgrammerSymbol" (click)="FormEvent()">
       <span class="material-symbols-outlined" style="color: white;">
         person
@@ -10,7 +10,7 @@
     </button>
   </div>
 <div class="card-container">
-  <div  *ngFor="let card of cards; let i = index">
+  <div  *ngFor="let card of cards | filter:searchText ; let i = index" >
   <div >
     <app-card [name]="card.name" [surname]="card.surname" [rol]="card.rol" [id]="card.id"></app-card>
   </div>
