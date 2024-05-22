@@ -34,7 +34,7 @@ p:hover {
     position: relative;
     top: -10px;
 }
-
+/*El container de las tarjetas*/
 .cards {
     width: 100%;
     height: 100%;
@@ -44,6 +44,15 @@ p:hover {
     box-shadow: 0px, 10px, 10px, rgba(0, 0, 0, 0.2);
     border-radius: 15px;
     transition: 0.99s;
+    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.cards::-webkit-scrollbar {
+    display: none;
+}
+.card::-webkit-scrollbar-button{
+    display: none;
 }
 
 .cards:hover {
