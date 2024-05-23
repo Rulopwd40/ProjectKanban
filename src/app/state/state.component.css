@@ -91,8 +91,8 @@ p:hover {
 
     cursor: pointer;
     /* Adjust as needed*/
-    left:32%;     
-    transform: translate(0%, 1000%);
+    /* left: 32%; */
+    transform: translate(0%, 1275%);
     transition: 0.3s;
 }
 

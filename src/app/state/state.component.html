@@ -13,8 +13,9 @@
           [dev]="card.dev">
         </app-statecard>
     </ng-container>
-    <ng-container *ngIf="backlog()" >
+
+  </div>    
+  <ng-container *ngIf="backlog()" >
       <button class="add-button" (click)="openForm()">+</button>
     </ng-container>
-  </div>
 </div>
